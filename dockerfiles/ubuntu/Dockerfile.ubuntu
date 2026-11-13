@@ -1,3 +1,5 @@
+**informs docker on how to create the image
+
 FROM ubuntu:26.04
 
 ENV ENVIRONMENT=DEV
