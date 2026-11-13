@@ -8,12 +8,11 @@
 
 | **Details**                                                                                                                           | **Comment** |
 |:--------------------------------------------------------------------------------------------------------------------------------------|:------------|
-| **Student ID**                                                                                                                        |             |
-| **Name**                                                                                                                              |             |
-| **What part of the lab did you personally<br/>contribute to (provide a link to the<br/>branch(es)), and what did you learn from it?** |             |
+| **Student ID**                               162357                                                                                         |             |
+| **Name**                                                                                                                            JEANETTE OMONDI  |             |
+| **What part of the lab did you personally<br/>contribute to (provide a link to the<br/>branch(es)), and what did you learn from it?** |    I implemented the regression endpoint (/api/v1/models/regression/predict) in api.py. I configured the route to accept JSON input, convert it to a Pandas DataFrame, and pass it to the pre-loaded regression_pipeline artifact. I handled input validation using a try/except block to return proper 400 errors. I tested the endpoint locally using Postman and verified it returns accurate predictions. (Link to my branch: feature/regression-endpoint)         |
 
 **Member 2:**
-
 | **Details**                                                                                                                           | **Comment** |
 |:--------------------------------------------------------------------------------------------------------------------------------------|:------------|
 | **Student ID**                                                                                                                        |             |
