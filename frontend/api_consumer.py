@@ -11,9 +11,6 @@ print("PART 1: GET request (retrieve data)\n")
 # Base URL: https://api.stackexchange.com/2.3/ — The root address and API version.
 # Endpoint: questions — The specific resource or collection you are requesting data from.
 # Query Parameters: ?order=desc&sort=activity&pagesize=3&site=stackoverflow — The filters applied to sort and target the Stack Overflow site.
-
-response = requests.get('https://api.stackexchange.com/2.3/questions?order=desc&sort=activity&pagesize=3&site=stackoverflow')
-
 for data in response.json()['items']:
     print('=' * 50)
     print('Title: ', data['title'])
@@ -62,7 +59,7 @@ print("\nPART 3: PUT request (update data)\n")
 
 update_url = 'https://jsonplaceholder.typicode.com/posts/1'
 
-updated_post = {
+updated_post = { "this is a payload"
     'id': 1,
     'title': 'Updated Title',
     'body': 'This post has been updated.',

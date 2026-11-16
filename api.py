@@ -6,7 +6,7 @@ produced in earlier labs:
 
     1. Regression       -- SME monthly revenue prediction
     2. Classification   -- SME credit risk category
-    3. Clustering       -- Mall customer segment assignment
+    3. Clusterin7g       -- Mall customer segment assignment
     4. Association Rule -- Product recommendation from a cart
        Mining (ARM)
 
@@ -124,45 +124,33 @@ def predict_regression():
             "status": "error",
             "message": str(e)
         }), 400
-    
-# 2. CLASSIFICATION -- predict SME credit risk category (Low/Medium/High)
 
-# Sample request (cURL):
-#   curl -X POST http://127.0.0.1:5000/api/v1/models/sme-credit-risk-classifier/predictions \
-#        -H "Content-Type: application/json" \
-#        -d '{"sector": "Retail", "county": "Nairobi", "quarter": "Q2",
-#             "loan_purpose": "Working Capital", "owner_education_level": "Secondary",
-#             "business_age_years": 2.1, "num_employees": 4,
-#             "monthly_revenue_kes": 850000, "loan_amount_kes": 150000,
-#             "loan_term_months": 12, "interest_rate_pct": 16.5,
-#             "collateral_value_kes": null, "debt_to_income_ratio": 0.62,
-#             "credit_score": 590, "num_previous_loans": 1,
-#             "missed_payments_count": 3, "online_presence_score": 40.0,
-#             "customer_satisfaction_score": 3.4, "competitor_density": 6}'
-#
-#
-# Note: collateral_value_kes is null here because "Working Capital" loans are
-# more often unsecured (structural missingness, not missing at random) --
-# again, the pipeline's imputer + missingness indicator already handles this
-# internally; this route does not need special code for it.
-@app.route("/api/v1/models/sme-credit-risk-classifier/predictions", methods=["POST"])
-def predict_credit_risk():
-    payload = request.get_json()
-    input_row = pd.DataFrame([payload])
 
-    predicted_class = classification_pipeline.predict(input_row)[0]
-    predicted_probabilities = classification_pipeline.predict_proba(input_row)[0]
-    class_labels = classification_pipeline.named_steps["model"].classes_
+# --- MEMBER 2: CLASSIFICATION ROUTE ---
+@app.route("/api/v1/models/classification/predict", methods=["POST"])
+def predict_classification():
+    try:
+        data = request.get_json()
+        input_df = pd.DataFrame([data])
 
-    return jsonify({
-        "predicted_credit_risk_category": str(predicted_class),
-        "class_probabilities": {
-            str(label): round(float(prob), 4)
-            for label, prob in zip(class_labels, predicted_probabilities)
-        },
-        "model": "Support Vector Classifier (tuned, SMOTE-resampled at training only)",
-    })
+        # Make prediction
+        prediction = classification_pipeline.predict(input_df)
 
+        # Extract the result (it is already a string like 'High' or 'Low')
+        pred_class = prediction[0]
+
+        # Return JSON (REMOVE the int() wrapper here!)
+        return jsonify({
+            "status": "success",
+            "model": "SME Credit Risk Classifier",
+            "prediction": str(pred_class)  # Convert to string just to be safe
+        }), 200
+
+    except Exception as e:
+        return jsonify({
+            "status": "error",
+            "message": str(e)
+        }), 400
 
 # 3. CLUSTERING -- assign a new mall customer to an existing segment
 
