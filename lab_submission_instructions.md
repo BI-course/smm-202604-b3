@@ -16,7 +16,7 @@
 | **Details**                                                                                                                           | **Comment** |
 |:--------------------------------------------------------------------------------------------------------------------------------------|:------------|
 | **Student ID**                                 16599                                                                                       |             |
-| **Name**                                      WANAGRU LYDIAH WANGUI                                                                                        |             |
+| **Name**                                      WANAGRU WANGUI LYDIAH                                                                                         |             |
 | **What part of the lab did you personally<br/>contribute to (provide a link to the<br/>branch(es)), and what did you learn from it?** | I implemented the classification endpoint (/api/v1/models/classification/predict) in api.py. I ensured the pre-trained classification_pipeline correctly processes the JSON input and returns the predicted class. I tested it locally with Postman. (Link to my branch: feature/classification-endpoint)            |
 
 **Member 3:**
