@@ -20,12 +20,13 @@
 | **What part of the lab did you personally<br/>contribute to (provide a link to the<br/>branch(es)), and what did you learn from it?** | I implemented the classification endpoint (/api/v1/models/classification/predict) in api.py. I ensured the pre-trained classification_pipeline correctly processes the JSON input and returns the predicted class. I tested it locally with Postman. (Link to my branch: feature/classification-endpoint)            |
 
 **Member 3:**
-
-| **Details**                                                                                                                           | **Comment** |
+ 
+|**Details**                                                                                                                           | **Comment** |
 |:--------------------------------------------------------------------------------------------------------------------------------------|:------------|
-| **Student ID**                                                                                                                        |             |
-| **Name**                                                                                                                              |             |
-| **What part of the lab did you personally<br/>contribute to (provide a link to the<br/>branch(es)), and what did you learn from it?** |             |
+| **Student ID**                                                                                                                        |   141809          |
+| **Name**                                                                                                                              | Keisha Wambui Wairimu                |
+| **What part of the lab did you personally<br/>contribute to (provide a link to the<br/>branch(es)), and what did you learn from it?** |  Implemented the clustering prediction route (`/api/v1/models/clustering/predict`) in api.py. Loaded the K-Means model and scaler from the saved artifacts, scaled the incoming JSON features, and returned the predicted cluster. Tested locally with Postman. https://github.com/BI-course/smm-202604-b3/tree/feature/clustering-endpoint I learned how to serve a trained ML model through a Flask API and fix environment and connection errors while testing.           |
+
 
 **Member 4:**
 

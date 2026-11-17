@@ -152,31 +152,38 @@ def predict_classification():
             "message": str(e)
         }), 400
 
-# 3. CLUSTERING -- assign a new mall customer to an existing segment
+# 3. # --- MEMBER 3: CLUSTERING ROUTE ---
+@app.route("/api/v1/models/clustering/predict", methods=["POST"])
+def predict_clustering():
+    try:
+        # 1. Get JSON data
+        data = request.get_json()
+        
+        # 2. Convert to DataFrame
+        input_df = pd.DataFrame([data])
+        
+        # 3. CRITICAL STEP: Scale the data using the loaded scaler
+        # K-Means uses Euclidean distance, so features must be on the same scale!
+        scaled_data = clustering_scaler.transform(input_df)
+        
+        # 4. Make the prediction using the scaled data
+        cluster_label = clustering_kmeans.predict(scaled_data)
+        
+        # 5. Extract the result (e.g., 0, 1, 2, 3, or 4)
+        cluster_id = int(cluster_label[0])
+        
+        # 6. Return JSON
+        return jsonify({
+            "status": "success",
+            "model": "Mall Customer Segmentation",
+            "cluster_id": cluster_id
+        }), 200
 
-# Sample request (cURL):
-#   curl -X POST http://127.0.0.1:5000/api/v1/models/mall-customer-segmenter/predictions \
-#        -H "Content-Type: application/json" \
-#        -d '{"Age": 27, "Annual Income (k$)": 45, "Spending Score (1-100)": 72}'
-#
-# Note: unlike the two Pipelines above, K-Means does not bundle its own
-# scaler, so this is the one endpoint where the scaling step is applied
-# explicitly (scaler.transform(...) then kmeans.predict(...)) -- exactly the
-# two-object pattern the clustering notebook persisted together for this
-# reason. There is still no manual encoding or feature engineering: the
-# three numeric fields are used exactly as the client sends them.
-@app.route("/api/v1/models/mall-customer-segmenter/predictions", methods=["POST"])
-def predict_customer_segment():
-    payload = request.get_json()
-    input_row = pd.DataFrame([payload])
-
-    scaled_input = clustering_scaler.transform(input_row)
-    assigned_cluster = int(clustering_kmeans.predict(scaled_input)[0])
-
-    return jsonify({
-        "assigned_cluster": assigned_cluster,
-        "model": "K-Means (k=5, standardized features)",
-    })
+    except Exception as e:
+        return jsonify({
+            "status": "error",
+            "message": str(e)
+        }), 400
 
 
 # 4. ASSOCIATION RULE MINING -- recommend products for a shopping cart
