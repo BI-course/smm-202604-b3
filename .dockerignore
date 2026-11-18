@@ -1,0 +1,7 @@
+.venv
+.git
+.idea
+.devcontainer
+__pycache__/
+*.pyc
+model/*.ipynb
