@@ -32,9 +32,21 @@
 
 | **Details**                                                                                                                           | **Comment** |
 |:--------------------------------------------------------------------------------------------------------------------------------------|:------------|
-| **Student ID**                                                                                                                        |             |
-| **Name**                                                                                                                              |             |
-| **What part of the lab did you personally<br/>contribute to (provide a link to the<br/>branch(es)), and what did you learn from it?** |             |
+| **Student ID**                                                                                                                        |    166167         |
+| **Name**                                                                                                                              |  Katanu Kavila-Kwinga           |
+| **What part of the lab did you personally<br/>contribute to (provide a link to the<br/>branch(es)), and what did you learn from it?** |   I implemented the recommender endpoint
+(/api/v1/models/recommender/predict) in
+api.py. I built the logic to iterate through an
+input basket, look up matching antecedents in
+the pre-loaded recommendation_lookup
+dictionary, filter out items already in the basket,
+and return the top 3 recommendations sorted by
+lift. I tested it locally with Postman and verified it
+returns accurate product recommendations.
+Through this, I learned how to serve a rule-based
+recommendation engine via an API and the
+importance of using a precomputed lookup table
+for fast inference. The link to my branch is  https://github.com/BI-course/smm-202604-b3/tree/feature/recommender-endpoint         |
 
 **Member 5:**
 

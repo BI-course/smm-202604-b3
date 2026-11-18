@@ -6,7 +6,7 @@ produced in earlier labs:
 
     1. Regression       -- SME monthly revenue prediction
     2. Classification   -- SME credit risk category
-    3. Clusterin7g       -- Mall customer segment assignment
+    3. Clustering       -- Mall customer segment assignment
     4. Association Rule -- Product recommendation from a cart
        Mining (ARM)
 
@@ -186,7 +186,66 @@ def predict_clustering():
         }), 400
 
 
-# 4. ASSOCIATION RULE MINING -- recommend products for a shopping cart
+# --- MEMBER 4: RECOMMENDER ROUTE ---
+
+@app.route("/api/v1/models/recommender/predict", methods=["POST"])
+def predict_recommender():
+    try:
+        # 1. Get the input basket from the JSON payload
+        data = request.get_json()
+        basket = data.get("basket", [])
+
+        if not basket:
+            return jsonify({
+                "status": "error",
+                "message": "Basket is empty"
+            }), 400
+
+        # 2. Collect recommendations from the pre-loaded lookup table
+        recommendations = {}
+
+        for item in basket:
+            # Check if the item exists in our lookup table
+            if item in recommendation_lookup:
+
+                # recommendation_lookup[item] is a list of tuples:
+                # (recommended_item, lift)
+                for rec_item, lift_score in recommendation_lookup[item]:
+
+                    # Don't recommend something they already have in the basket
+                    if rec_item not in basket:
+
+                        # Keep the highest lift score if multiple items
+                        # recommend the same thing
+                        if (
+                            rec_item not in recommendations
+                            or lift_score > recommendations[rec_item]
+                        ):
+                            recommendations[rec_item] = lift_score
+
+        # 3. Sort the recommendations by lift score (highest first)
+        sorted_recs = sorted(
+            recommendations.items(),
+            key=lambda x: x[1],
+            reverse=True
+        )
+
+        # 4. Get the top 3 recommendations
+        top_3 = [rec[0] for rec in sorted_recs[:3]]
+
+        # 5. Return JSON
+        return jsonify({
+            "status": "success",
+            "model": "Pharmacy Recommender",
+            "input_basket": basket,
+            "recommendations": top_3
+        }), 200
+
+    except Exception as e:
+        return jsonify({
+            "status": "error",
+            "message": str(e)
+        }), 400
 
 # Sample request (cURL):
 #   curl -X POST http://127.0.0.1:5000/api/v1/models/ecommerce-recommender/predictions \
