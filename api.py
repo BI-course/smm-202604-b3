@@ -204,13 +204,13 @@ def predict_recommender():
         # 2. Collect recommendations from the pre-loaded lookup table
         recommendations = {}
 
-        for item in basket:
-            # Check if the item exists in our lookup table
-            if item in recommendation_lookup:
+        basket_set = set(basket)
+        for antecedent, recs in recommendation_lookup.items():
+            # Keys are frozensets of items; match when all are in the basket
+            if antecedent.issubset(basket_set):
 
-                # recommendation_lookup[item] is a list of tuples:
-                # (recommended_item, lift)
-                for rec_item, lift_score in recommendation_lookup[item]:
+                # each rec is (recommended_item, confidence, lift)
+                for rec_item, *_, lift_score in recs:
 
                     # Don't recommend something they already have in the basket
                     if rec_item not in basket:
