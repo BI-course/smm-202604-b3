@@ -56,6 +56,25 @@ for fast inference. The link to my branch is  https://github.com/BI-course/smm-2
 | **Name**                                                                                                                              |             |
 | **What part of the lab did you personally<br/>contribute to (provide a link to the<br/>branch(es)), and what did you learn from it?** |             |
 
+
+
+**Member 6:**
+
+| **Details**                                                                                                                           | **Comment** |
+|:--------------------------------------------------------------------------------------------------------------------------------------|:------------|
+| **Student ID**                                                                                                                        |              166994|
+| **Name**                                                                                                                              |    Cindy Wanini Gichuhi    |
+| **What part of the lab did you personally<br/>contribute to (provide a link to the<br/>branch(es)), and what did you learn from it?** |     I tested all four endpoints in three environments: local Flask (127.0.0.1:5000), Docker with Gunicorn behind Nginx (localhost:80), and the live Render deployment (https://smm-202604-b3-1.onrender.com). I built a Postman collection with one request per model and checked that each environment returned identical predictions, which confirms Render runs the same api.py. I wrote helper scripts to read each model’s expected input columns and category values so the test requests matched the training data. While testing, I fixed a Docker DNS problem that stopped images from downloading, and a port 80 conflict with Apache (XAMPP) that was blocking Nginx. I also recorded and edited the team’s demo video. I learned how Gunicorn, Nginx and Docker fit together, and how to debug deployment problems by isolating whether the network, Docker or the app was at fault.
+Branch: https://github.com/BI-course/smm-202604-b3/tree/feature/integration-testing        |
+
+
+
+
+
+
+
+
+
 ## Chosen Level of Difficulty
 
 **Specify the chosen level of difficulty** (baseline, intermediate, or advanced):
@@ -75,6 +94,8 @@ At minimum, the video must show, in one continuous walkthrough:
 Note that you are required to submit the link to the video and NOT the video itself. The video should NOT be uploaded to your repository—that would be a misuse of GitHub.
 
 **Link to the video:**
+https://drive.google.com/file/d/1SJGlg50HVN9Pgw3RAkODtMhyLc3xV1aO/view?usp=sharing
+
 
 ## Public URLs
 
@@ -82,7 +103,7 @@ Fill in only the rows that apply to your chosen difficulty level (see Part C bel
 
 | **Deployment target**                             | **URL** |
 |:--------------------------------------------------|:--------|
-| Render (the full `api.py`, all endpoints)         |         |
+| Render (the full `api.py`, all endpoints)         |    https://smm-202604-b3-1.onrender.com/     |
 | Hugging Face Space (Gradio, one tab per model)    |         |
 | Streamlit Community Cloud app (one tab per model) |         |
 
