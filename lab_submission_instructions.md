@@ -52,14 +52,13 @@ for fast inference. The link to my branch is  https://github.com/BI-course/smm-2
 
 | **Details**                                                                                                                           | **Comment** |
 |:--------------------------------------------------------------------------------------------------------------------------------------|:------------|
-| **Student ID**                                                                                                                        |             |
-| **Name**                                                                                                                              |             |
-| **What part of the lab did you personally<br/>contribute to (provide a link to the<br/>branch(es)), and what did you learn from it?** |             |
+| **Student ID**                                                                                                                        | 168944      |
+| **Name**                                                                                                                              | Njuguna Bernard Maina |
+| **What part of the lab did you personally<br/>contribute to (provide a link to the<br/>branch(es)), and what did you learn from it?** | I handled the infrastructure and deployment. I wrote the Dockerfile to serve the Flask app with Gunicorn, created nginx.conf and docker-compose.lab.yaml to run Nginx as a reverse proxy on port 80, pinned requirements.txt (adding imbalanced-learn so the classifier loads), and deployed the same api.py to Render: https://smm-202604-b3-1.onrender.com. I also patched the recommender route (frozenset keys and 3-value rule tuples), agreed with Member 4. I tested all four endpoints through Nginx and on Render. I learned how to containerize an ML API, configure a reverse proxy, manage dependency versions for saved models, and deploy from Docker to Render . (Link to my branch: https://github.com/BI-course/smm-202604-b3/tree/feature/docker-nginx-render) |
 
 ## Chosen Level of Difficulty
 
-**Specify the chosen level of difficulty** (baseline, intermediate, or advanced):
-
+**Specify the chosen level of difficulty** (baseline, intermediate, or advanced): Intermediate
 ## Video Demonstration
 
 Submit the link to a short video (**not more than 10 minutes**) demonstrating your complete solution at whichever difficulty level you chose. Please ensure that the lecturer has rights to view the video.
