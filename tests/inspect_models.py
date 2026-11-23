@@ -1,0 +1,10 @@
+import joblib
+r = joblib.load("model/lasso_regressor_for_sme_revenue.joblib")
+print("REGRESSION:", list(r.feature_names_in_))
+c = joblib.load("model/svc_classifier_for_sme_credit_risk.joblib")
+print("CLASSIFICATION:", list(c.feature_names_in_))
+k = joblib.load("model/kmeans_mall_customer_segmentation.joblib")
+print("CLUSTERING:", list(k["scaler"].feature_names_in_))
+a = joblib.load("model/apriori_recommendation_rules.joblib")
+print("RULES SAMPLE:", list(a["recommendation_lookup"].items())[:3])
+print(a["sku_lookup"].head())

@@ -1,0 +1,63 @@
+{
+  "info": {
+    "name": "ML API Lab",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "base", "value": "http://localhost" }
+  ],
+  "item": [
+    {
+      "name": "1. Regression - SME Revenue",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": "{{base}}/api/v1/models/regression/predict",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"business_age_years\": 6,\n  \"monthly_marketing_spend_kes\": 25000,\n  \"customer_satisfaction_score\": 7.5,\n  \"num_employees\": 12,\n  \"online_presence_score\": 65,\n  \"competitor_density\": 4,\n  \"avg_daily_foot_traffic\": 150,\n  \"interest_rate_pct\": 13.5,\n  \"sector\": \"Retail\",\n  \"county\": \"Nairobi\",\n  \"quarter\": \"Q2\",\n  \"owner_education_level\": \"Bachelors\"\n}",
+          "options": { "raw": { "language": "json" } }
+        }
+      }
+    },
+    {
+      "name": "2. Classification - SME Credit Risk",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": "{{base}}/api/v1/models/classification/predict",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"sector\": \"Technology\",\n  \"county\": \"Mombasa\",\n  \"quarter\": \"Q3\",\n  \"loan_purpose\": \"Business Expansion\",\n  \"owner_education_level\": \"Diploma\",\n  \"business_age_years\": 4,\n  \"num_employees\": 8,\n  \"monthly_revenue_kes\": 450000,\n  \"loan_amount_kes\": 1200000,\n  \"loan_term_months\": 24,\n  \"interest_rate_pct\": 14.0,\n  \"collateral_value_kes\": 900000,\n  \"debt_to_income_ratio\": 0.35,\n  \"credit_score\": 640,\n  \"num_previous_loans\": 2,\n  \"missed_payments_count\": 1,\n  \"online_presence_score\": 55,\n  \"customer_satisfaction_score\": 7.0,\n  \"competitor_density\": 3\n}",
+          "options": { "raw": { "language": "json" } }
+        }
+      }
+    },
+    {
+      "name": "3. Clustering - Mall Customers",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": "{{base}}/api/v1/models/clustering/predict",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"Age\": 25,\n  \"Annual Income (k$)\": 70,\n  \"Spending Score (1-100)\": 80\n}",
+          "options": { "raw": { "language": "json" } }
+        }
+      }
+    },
+    {
+      "name": "4. Recommender - Product Basket",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": "{{base}}/api/v1/models/recommender/predict",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"basket\": [\"P04\", \"P03\"]\n}",
+          "options": { "raw": { "language": "json" } }
+        }
+      }
+    }
+  ]
+}
